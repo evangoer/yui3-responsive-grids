@@ -3,17 +3,17 @@ YUI.add('grid', function (Y) {
         initializer: function () {
             this.add(new Y.Unit());
         },
-        toMarkup: function () {
+        toMarkup: function (includeContent) {
             var open    = '<div class="yui3-g ' + this.get('className') + '">\n',
-                close   = '\n</div>';
-                markup  = open + this.getUnitMarkup() + close;
+                close   = '\n</div>',
+                markup  = open + this.getUnitMarkup(includeContent) + close;
             
             return markup;
         },
-        getUnitMarkup: function () {
+        getUnitMarkup: function (includeContent) {
             var unitMarkup = '';
             this.each(function (unit) {
-                unitMarkup += unit.toMarkup();
+                unitMarkup += unit.toMarkup(includeContent);
             });
             return unitMarkup;
         },
