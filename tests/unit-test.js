@@ -4,7 +4,7 @@ YUI.add('unit-test', function (Y) {
     suite.add(new Y.Test.Case({
         name: 'Testing toMarkup()',
 
-        'No className should yield empty yui3-u <div>': function () {
+        'No className should yield an empty yui3-u <div>': function () {
             var unit = new Y.Unit()
                 markup = '<div class="yui3-u ">\n\n</div>';
                 

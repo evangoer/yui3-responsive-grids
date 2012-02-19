@@ -10,9 +10,13 @@
 <script>
 YUI({
     modules: {
+        'unit': {
+            fullpath: '../js/unit.js',
+            requires: ['model']
+        },
         'grid': {
             fullpath: '../js/grid.js',
-            requires: ['model-list']
+            requires: ['model-list', 'unit']
         },
         'grid-test': {
             fullpath: 'grid-test.js',

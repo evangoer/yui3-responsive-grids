@@ -1,15 +1,26 @@
 YUI.add('grid', function (Y) {
     Y.Grid = Y.Base.create('grid', Y.ModelList, [], {
-        model: Y.Grid,
+        initializer: function () {
+            this.add(new Y.Unit());
+        },
         toMarkup: function () {
-            var tmpl = '<div class="yui3-g {className}">',
-                data = { className: this.get('className') };
+            var open    = '<div class="yui3-g ' + this.get('className') + '">\n',
+                close   = '\n</div>';
+                markup  = open + this.getUnitMarkup() + close;
             
-            return Y.Lang.sub(tmpl, data);
-        }
+            return markup;
+        },
+        getUnitMarkup: function () {
+            var unitMarkup = '';
+            this.each(function (unit) {
+                unitMarkup += unit.toMarkup();
+            });
+            return unitMarkup;
+        },
+        model: Y.Unit
     }, {
         ATTRS: {
             className: { value: '' }
         }
     });
-}, '0.1', { requires: ['model-list'] });
+}, '0.1', { requires: ['model-list', 'unit'] });
