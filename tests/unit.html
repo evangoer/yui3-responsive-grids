@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<title>Y.Unit Test Runner</title>
+
+<body class="yui3-skin-sam">
+<h1>Y.Unit Test Runner</h1>
+
+<div id="test"></div>
+
+<script src="http://yui.yahooapis.com/3.5.0pr2/build/yui/yui-min.js"></script>
+<script>
+YUI({
+    modules: {
+        'unit': {
+            fullpath: '../js/unit.js',
+            requires: ['model']
+        },
+        'unit-test': {
+            fullpath: 'unit-test.js',
+            requires: ['unit', 'test-console']
+        }
+    }
+}).use('unit-test', function (Y) {
+    new Y.Test.Console().render('#test');
+    Y.Test.Runner.run();
+});
+</script>
