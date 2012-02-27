@@ -30,16 +30,6 @@ YUI.add('grid-test', function (Y) {
                 + grid.item(1).toMarkup() + '\n</div>';
             
             Y.Assert.areEqual(markup, grid.toMarkup());
-        },
-        'includeContent should pass through to child units': function () {
-            var grid   = new Y.Grid(),
-                markup = '';
-            
-            grid.add(new Y.Unit({ className: 'right' }));
-            markup = '<div class="yui3-g ">\n' + grid.item(0).toMarkup(true)
-                + grid.item(1).toMarkup(true) + '\n</div>';
-            
-            Y.Assert.areEqual(markup, grid.toMarkup(true));
         }
     }));
     

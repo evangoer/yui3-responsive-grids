@@ -15,18 +15,6 @@ YUI.add('unit-test', function (Y) {
                 markup = '<div class="yui3-u left">\n\n</div>';
                 
             Y.Assert.areEqual(markup, unit.toMarkup());
-        },
-        'includeContent flag should include the content': function () {
-            var unit = new Y.Unit();
-                markup = '<div class="yui3-u ">\n    Lorem ipsum dolor sit amet.\n</div>';
-                
-            Y.Assert.areEqual(markup, unit.toMarkup(true));
-        },
-        'includeContent flag and className should work together': function () {
-            var unit = new Y.Unit({ className: 'left' });
-                markup = '<div class="yui3-u left">\n    Lorem ipsum dolor sit amet.\n</div>';
-                
-            Y.Assert.areEqual(markup, unit.toMarkup(true));
         }
     }));
     
