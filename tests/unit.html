@@ -10,13 +10,13 @@
 <script>
 YUI({
     modules: {
-        'unit': {
-            fullpath: '../js/unit.js',
-            requires: ['model']
+        'grid': {
+            fullpath: '../js/grid.js',
+            requires: ['model-list']
         },
         'unit-test': {
             fullpath: 'unit-test.js',
-            requires: ['unit', 'test-console']
+            requires: ['grid', 'test-console']
         }
     }
 }).use('unit-test', function (Y) {
