@@ -10,9 +10,17 @@ YUI.add('grid', function (Y) {
     }, {
         ATTRS: {
             className: { value: '' },
+            
             content: { 
                 value: [],
-                validator: Y.Lang.isArray
+                validator: function (newContent) {
+                    if (! Y.Lang.isArray(newContent)) {
+                        return false;
+                    }
+                    return Y.Array.every(newContent, function (item) {
+                        return Y.Lang.isString(item) || item instanceof Y.Grid;
+                    });
+                }
             }
         }
     });
@@ -41,4 +49,4 @@ YUI.add('grid', function (Y) {
             className: { value: '' }
         }
     });
-}, '0.1', { requires: ['model-list', 'unit'] });
+}, '0.1', { requires: ['model-list', 'array-extras'] });

@@ -21,17 +21,23 @@ YUI.add('unit-test', function (Y) {
     suite.add(new Y.Test.Case({
         name: 'Testing adding content to a Unit',
         
-        'Content should be an array': function () {
-            var unit = new Y.Unit(),
-                arrVal = [1, 2, 3],
-                numVal = 4;
+        'Content should not be something other than an array': function () {
+            var unit = new Y.Unit({ content: 'foo' });
+            Y.Assert.areNotEqual('foo', unit.get('content'));
+        },
+        'Content should be an array of strings and Y.Grid objects': function () {
+            var unit   = new Y.Unit(),
+                arrVal = ['a', new Y.Grid(), 'c'];
             
             unit.set('content', arrVal);
             Y.Assert.areEqual(arrVal, unit.get('content'));
-
-            // validator rejects; should still be the previous array
-            unit.set('content', numVal);
-            Y.Assert.areEqual(arrVal, unit.get('content'));
+        },
+        'Content array should not contain illegal objects': function () {
+            var unit   = new Y.Unit(),
+                arrVal = ['a', new Date(), 'c'];
+            
+            unit.set('content', arrVal);
+            Y.Assert.areNotEqual('foo', unit.get('content'));
         }
     }));
     
