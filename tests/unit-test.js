@@ -18,5 +18,22 @@ YUI.add('unit-test', function (Y) {
         }
     }));
     
+    suite.add(new Y.Test.Case({
+        name: 'Testing adding content to a Unit',
+        
+        'Content should be an array': function () {
+            var unit = new Y.Unit(),
+                arrVal = [1, 2, 3],
+                numVal = 4
+            
+            unit.set('content', arrVal);
+            Y.Assert.areEqual(arrVal, unit.get('content'));
+
+            // validator rejects; should still be the previous array
+            unit.set('content', numVal);
+            Y.Assert.areEqual(arrVal, unit.get('content'));
+        }
+    }));
+    
     Y.Test.Runner.add(suite);
-}, "1.0", { requires: ['unit', 'test-console'] });
+}, "1.0", { requires: ['grid', 'test-console'] });

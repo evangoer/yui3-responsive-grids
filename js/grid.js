@@ -9,7 +9,11 @@ YUI.add('grid', function (Y) {
         }
     }, {
         ATTRS: {
-            className: { value: '' }
+            className: { value: '' },
+            content: { 
+                value: [],
+                validator: Y.Lang.isArray
+            }
         }
     });
     
