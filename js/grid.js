@@ -1,11 +1,20 @@
 YUI.add('grid', function (Y) {
-    Y.Unit = Y.Base.create('unit', Y.Model, [], {
+    
+    Y.GridMarkup = function () {};
+    Y.GridMarkup.prototype = {
+        // TODO handle indentation / pretty printing
         toMarkup: function () {
-            var open    = '<div class="yui3-u {className}">\n',
+            var open    = '<div class="' + this.baseClassName + ' ' + this.get('className') + '">\n',
                 close   = '\n</div>';
-                markup  = open + close;
             
-            return Y.Lang.sub(markup, this.toJSON());
+            return open + this.getInternalMarkup() + close;
+        }
+    }
+    
+    Y.Unit = Y.Base.create('unit', Y.Model, [Y.GridMarkup], {
+        baseClassName: 'yui3-u',
+        getInternalMarkup: function () {
+            return ''; // TODO return <div class="content"> & possibly child grids
         }
     }, {
         ATTRS: {
@@ -25,25 +34,20 @@ YUI.add('grid', function (Y) {
         }
     });
     
-    Y.Grid = Y.Base.create('grid', Y.ModelList, [], {
+    Y.Grid = Y.Base.create('grid', Y.ModelList, [Y.GridMarkup], {
+        baseClassName: 'yui3-g',
+        model: Y.Unit,
+        
         initializer: function () {
             this.add(new Y.Unit());
         },
-        toMarkup: function () {
-            var open    = '<div class="yui3-g ' + this.get('className') + '">\n',
-                close   = '\n</div>',
-                markup  = open + this.getUnitMarkup() + close;
-            
-            return markup;
-        },
-        getUnitMarkup: function () {
-            var unitMarkup = '';
+        getInternalMarkup: function () {
+            var markup = '';
             this.each(function (unit) {
-                unitMarkup += unit.toMarkup();
+                markup += unit.toMarkup();
             });
-            return unitMarkup;
-        },
-        model: Y.Unit
+            return markup;
+        }
     }, {
         ATTRS: {
             className: { value: '' }
