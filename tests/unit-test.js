@@ -5,13 +5,13 @@ YUI.add('unit-test', function (Y) {
         name: 'Testing toMarkup()',
 
         'No className should yield an empty yui3-u <div>': function () {
-            var unit = new Y.Unit()
+            var unit = new Y.Unit(),
                 markup = '<div class="yui3-u ">\n\n</div>';
                 
             Y.Assert.areEqual(markup, unit.toMarkup());
         },
         'A className should follow the yui3-u': function () {
-            var unit = new Y.Unit({ className: 'left' });
+            var unit = new Y.Unit({ className: 'left' }),
                 markup = '<div class="yui3-u left">\n\n</div>';
                 
             Y.Assert.areEqual(markup, unit.toMarkup());
@@ -24,7 +24,7 @@ YUI.add('unit-test', function (Y) {
         'Content should be an array': function () {
             var unit = new Y.Unit(),
                 arrVal = [1, 2, 3],
-                numVal = 4
+                numVal = 4;
             
             unit.set('content', arrVal);
             Y.Assert.areEqual(arrVal, unit.get('content'));
