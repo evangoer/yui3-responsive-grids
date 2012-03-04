@@ -15,7 +15,7 @@ YUI.add('grid-test', function (Y) {
                 markup = '<div class="yui3-g footer">\n' + grid.item(0).toMarkup() + '\n</div>';
                 
             Y.Assert.areEqual(markup, grid.toMarkup());
-        },
+        }
     }));
     
     suite.add(new Y.Test.Case({

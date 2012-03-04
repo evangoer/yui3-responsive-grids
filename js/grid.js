@@ -14,7 +14,11 @@ YUI.add('grid', function (Y) {
     Y.Unit = Y.Base.create('unit', Y.Model, [Y.GridMarkup], {
         baseClassName: 'yui3-u',
         getInternalMarkup: function () {
-            return ''; // TODO return <div class="content"> & possibly child grids
+            var markup  = '<div class="content">\n';            
+            Y.Array.each(this.get('content'), function (item) {
+                markup += Y.Lang.isString(item) ? item : item.toMarkup();
+            });
+            return markup + '\n</div>';
         }
     }, {
         ATTRS: {

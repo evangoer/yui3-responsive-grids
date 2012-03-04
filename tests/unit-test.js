@@ -6,13 +6,13 @@ YUI.add('unit-test', function (Y) {
 
         'No className should yield an empty yui3-u <div>': function () {
             var unit = new Y.Unit(),
-                markup = '<div class="yui3-u ">\n\n</div>';
+                markup = '<div class="yui3-u ">\n<div class="content">\n\n</div>\n</div>';
                 
             Y.Assert.areEqual(markup, unit.toMarkup());
         },
         'A className should follow the yui3-u': function () {
             var unit = new Y.Unit({ className: 'left' }),
-                markup = '<div class="yui3-u left">\n\n</div>';
+                markup = '<div class="yui3-u left">\n<div class="content">\n\n</div>\n</div>';
                 
             Y.Assert.areEqual(markup, unit.toMarkup());
         }
