@@ -2,13 +2,13 @@ YUI.add('grid', function (Y) {
     
     Y.GridMarkup = function () {};
     Y.GridMarkup.prototype = {
-        // TODO handle indentation / pretty printing
         toMarkup: function () {
             var open    = '<div class="' + this.baseClassName + ' ' + this.get('className') + '">\n',
                 close   = '\n</div>';
             
             return open + this.getInternalMarkup() + close;
         }
+        // TODO handle indentation / pretty printing with an indent ATTR
     }
     
     Y.Unit = Y.Base.create('unit', Y.Model, [Y.GridMarkup], {
@@ -16,9 +16,9 @@ YUI.add('grid', function (Y) {
         getInternalMarkup: function () {
             var markup  = '<div class="content">\n';            
             Y.Array.each(this.get('content'), function (item) {
-                markup += Y.Lang.isString(item) ? item : item.toMarkup();
+                markup += (Y.Lang.isString(item) ? item : item.toMarkup()) + '\n';
             });
-            return markup + '\n</div>';
+            return markup + '</div>';
         }
     }, {
         ATTRS: {
