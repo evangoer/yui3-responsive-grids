@@ -8,6 +8,7 @@ YUI.add('breakpoint', function (Y) {
             //       Since both are listening for each other, be sure to prevent endless loop :)
         },
         toCSS: function () {
+            // TODO switch to Handlebars -- cleaner?
             if (this.get('selector')) {
                 return this.get('selector') + ' { ' + this.get('properties') + ' }\n';
             }
@@ -35,7 +36,7 @@ YUI.add('breakpoint', function (Y) {
         model: Y.Rule,
         
         toCSS: function () {
-            
+            // TODO use Handlebars -- conditional logic?
         },
         validateWidth: function (value) {
             return (value === null || Y.Lang.isNumber(value));
