@@ -6,13 +6,13 @@ YUI.add('grid-test', function (Y) {
 
         'No className should yield an empty yui3-g <div>': function () {
             var grid   = new Y.Grid(),
-                markup = '<div class="yui3-g ">\n' + grid.item(0).toMarkup() + '\n</div>';
+                markup = '<div class="yui3-g ">\n' + grid.item(0).toMarkup() + '</div>\n';
                 
             Y.Assert.areEqual(markup, grid.toMarkup());
         },
         'A className should follow the yui3-g': function () {
             var grid   = new Y.Grid({ className: 'footer' }),
-                markup = '<div class="yui3-g footer">\n' + grid.item(0).toMarkup() + '\n</div>';
+                markup = '<div class="yui3-g footer">\n' + grid.item(0).toMarkup() + '</div>\n';
                 
             Y.Assert.areEqual(markup, grid.toMarkup());
         }
@@ -27,7 +27,7 @@ YUI.add('grid-test', function (Y) {
             
             grid.add(new Y.Unit({ className: 'right' }));
             markup = '<div class="yui3-g ">\n' + grid.item(0).toMarkup()
-                + grid.item(1).toMarkup() + '\n</div>';
+                + grid.item(1).toMarkup() + '</div>\n';
             
             Y.Assert.areEqual(markup, grid.toMarkup());
         }

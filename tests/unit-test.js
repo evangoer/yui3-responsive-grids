@@ -6,39 +6,39 @@ YUI.add('unit-test', function (Y) {
 
         'No className should yield an empty yui3-u <div>': function () {
             var unit = new Y.Unit(),
-                markup = '<div class="yui3-u ">\n<div class="content">\n</div>\n</div>';
+                markup = '<div class="yui3-u ">\n</div>\n';
                 
             Y.Assert.areEqual(markup, unit.toMarkup());
         },
         'A className should follow the yui3-u': function () {
             var unit = new Y.Unit({ className: 'left' }),
-                markup = '<div class="yui3-u left">\n<div class="content">\n</div>\n</div>';
+                markup = '<div class="yui3-u left">\n</div>\n';
                 
             Y.Assert.areEqual(markup, unit.toMarkup());
         },
-        'String content should be nested inside a content <div>': function () {
+        'String content should be nested directly inside the unit': function () {
             var unit = new Y.Unit(),
-                markup = '<div class="yui3-u ">\n<div class="content">\nHELLOSKI\n</div>\n</div>';
+                markup = '<div class="yui3-u ">\nHELLOSKI\n</div>\n';
                 
             unit.set('content', ['HELLOSKI']);
             Y.Assert.areEqual(markup, unit.toMarkup());
         },
-        'Grid content should be nested inside a content <div>': function () {
+        'Grids should be able to nest inside a unit': function () {
             var unit = new Y.Unit(),
-                markup = '<div class="yui3-u ">\n<div class="content">\n'
-                    + '<div class="yui3-g ">\n<div class="yui3-u ">\n<div class="content">\n</div>\n</div>\n</div>\n'
-                    + '</div>\n</div>';
+                markup = '<div class="yui3-u ">\n'
+                    + '<div class="yui3-g ">\n<div class="yui3-u ">\n</div>\n</div>\n'
+                    + '</div>\n';
             
             unit.set('content', [new Y.Grid()]);
             Y.Assert.areEqual(markup, unit.toMarkup());
         },
         'Grid and string content should be displayed in order': function () {
             var unit = new Y.Unit(),
-                markup = '<div class="yui3-u ">\n<div class="content">\n'
-                    + '<div class="yui3-g ">\n<div class="yui3-u ">\n<div class="content">\n</div>\n</div>\n</div>\n'
+                markup = '<div class="yui3-u ">\n'
+                    + '<div class="yui3-g ">\n<div class="yui3-u ">\n</div>\n</div>\n'
                     + 'HELLOSKI\n'
-                    + '<div class="yui3-g ">\n<div class="yui3-u ">\n<div class="content">\n</div>\n</div>\n</div>\n'
-                    + '</div>\n</div>';
+                    + '<div class="yui3-g ">\n<div class="yui3-u ">\n</div>\n</div>\n'
+                    + '</div>\n';
                     
             unit.set('content', [new Y.Grid(), 'HELLOSKI', new Y.Grid()]);
             Y.Assert.areEqual(markup, unit.toMarkup());
