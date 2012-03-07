@@ -18,22 +18,25 @@ YUI.add('grid', function (Y) {
             // TODO: on selectorChange, inspect ev.newVal, look for classNames that match, update
         },
         getInternalMarkup: function () {
-            var markup  = '<div class="content">\n';            
+            var markup  = '';            
             Y.Array.each(this.get('content'), function (item) {
                 markup += (Y.Lang.isString(item) ? item : item.toMarkup()) + '\n';
             });
-            return markup + '</div>';
+            return markup;
         }
     }, {
         ATTRS: {
-            className: { value: '' }, // TODO broadcast event changes
-            
+            className: {
+                broadcast: 1, 
+                value: '' 
+            },
             content: { 
                 value: [],
                 validator: function (newContent) {
                     if (! Y.Lang.isArray(newContent)) {
                         return false;
                     }
+                    // return true if every array item is a string or a Grid; false otherwise.
                     return Y.Array.every(newContent, function (item) {
                         return Y.Lang.isString(item) || item instanceof Y.Grid;
                     });
