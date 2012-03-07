@@ -13,6 +13,10 @@ YUI.add('grid', function (Y) {
     
     Y.Unit = Y.Base.create('unit', Y.Model, [Y.GridMarkup], {
         baseClassName: 'yui3-u',
+        
+        initializer: function () {
+            // TODO: on selectorChange, inspect ev.newVal, look for classNames that match, update
+        },
         getInternalMarkup: function () {
             var markup  = '<div class="content">\n';            
             Y.Array.each(this.get('content'), function (item) {
@@ -22,7 +26,7 @@ YUI.add('grid', function (Y) {
         }
     }, {
         ATTRS: {
-            className: { value: '' },
+            className: { value: '' }, // TODO broadcast event changes
             
             content: { 
                 value: [],
@@ -42,6 +46,7 @@ YUI.add('grid', function (Y) {
         baseClassName: 'yui3-g',
         model: Y.Unit,
         
+        // TODO: on selectorChange, inspect ev.newVal, look for classNames that match, update
         initializer: function () {
             this.add(new Y.Unit());
         },
@@ -54,7 +59,7 @@ YUI.add('grid', function (Y) {
         }
     }, {
         ATTRS: {
-            className: { value: '' }
+            className: { value: '' } // TODO broadcast event changes
         }
     });
 }, '0.1', { requires: ['model-list', 'array-extras'] });
