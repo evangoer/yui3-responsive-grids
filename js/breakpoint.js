@@ -8,7 +8,12 @@ YUI.add('breakpoint', function (Y) {
             //       Since both are listening for each other, be sure to prevent endless loop :)
         },
         toCSS: function () {
-            return this.get('selector') + ' { ' + this.get('properties') + ' }\n';
+            if (this.get('selector')) {
+                return this.get('selector') + ' { ' + this.get('properties') + ' }\n';
+            }
+            else {
+                return '';
+            }
         }
     }, {
         ATTRS: {
@@ -19,7 +24,10 @@ YUI.add('breakpoint', function (Y) {
                     return (value === null || Y.Lang.isString(value));
                 }
             }, 
-            properties: { validator: Y.Lang.isString }  // possibly an array of name/value objects... ? 
+            properties: { 
+                value: '',
+                validator: Y.Lang.isString 
+            }
         }
     });
     

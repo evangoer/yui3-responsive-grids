@@ -12,6 +12,14 @@ YUI.add('breakpoint-test', function (Y) {
                 css = '.yui3-u { display: block; }\n';
                 
             Y.Assert.areEqual(css, rule.toCSS());
+        },
+        'A Y.Rule with a null selector should generate an empty string': function () {
+            var rule = new Y.Rule();
+            Y.Assert.areEqual('', rule.toCSS());
+        },
+        'Setting a bogus selector value should generate an empty string': function () {
+            var rule = new Y.Rule({ selector: new Date() });
+            Y.Assert.areEqual('', rule.toCSS());
         }
     }));
     
