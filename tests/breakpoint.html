@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<title>Y.Breakpoint Test Runner</title>
+
+<body class="yui3-skin-sam">
+<h1>Y.Breakpoint Test Runner</h1>
+
+<div id="test"></div>
+
+<script src="http://yui.yahooapis.com/3.5.0pr2/build/yui/yui-min.js"></script>
+<script>
+YUI({
+    modules: {
+        'breakpoint': {
+            fullpath: '../js/breakpoint.js',
+            requires: ['model-list']
+        },
+        'breakpoint-test': {
+            fullpath: 'breakpoint-test.js',
+            requires: ['breakpoint', 'test-console']
+        }
+    }
+}).use('breakpoint-test', function (Y) {
+    new Y.Test.Console().render('#test');
+    Y.Test.Runner.run();
+});
+</script>
