@@ -3,8 +3,8 @@ YUI.add('grid', function (Y) {
     Y.GridMarkup = function () {};
     Y.GridMarkup.prototype = {
         toMarkup: function () {
-            var open    = '<div class="' + this.baseClassName + ' ' + this.get('className') + '">\n',
-                close   = '\n</div>';
+            var open  = '<div class="' + this.baseClassName + ' ' + this.get('className') + '">\n',
+                close = '</div>\n';
             
             return open + this.getInternalMarkup() + close;
         }
@@ -20,7 +20,7 @@ YUI.add('grid', function (Y) {
         getInternalMarkup: function () {
             var markup  = '';            
             Y.Array.each(this.get('content'), function (item) {
-                markup += (Y.Lang.isString(item) ? item : item.toMarkup()) + '\n';
+                markup += (Y.Lang.isString(item) ? item + '\n' : item.toMarkup());
             });
             return markup;
         }
